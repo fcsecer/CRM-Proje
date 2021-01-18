@@ -1,1 +1,2 @@
-# CRM-System
+# CRM-Sistem
+Müşteri Yönetim Paneli
