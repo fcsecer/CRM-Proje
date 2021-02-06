@@ -16,7 +16,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	// add a reference to our security data source
+	// güvenlik veri kaynaðý ekleniyor
 	
 	@Autowired
 	private DataSource securityDataSource;
@@ -24,7 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		// use jdbc authentication
+		// jdbc kimlik doðrulamasý kullanýlýyor
 		
 		auth.jdbcAuthentication().dataSource(securityDataSource);
 
@@ -63,9 +63,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 		
 }
-
-
-
-
-
-

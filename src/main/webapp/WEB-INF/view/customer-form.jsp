@@ -39,10 +39,10 @@
 		<form:form action="saveCustomer" modelAttribute="customer"
 			method="POST">
 
-			<!-- need to associate this data with customer id -->
+			<!-- Bu verileri müsteri id iliskilendirmeniz gerekiyor -->
 			<form:hidden path="id" />
 
-			<!-- Sign up card -->
+			<!-- Kayit -->
 			<div class="card person-card">
 				<div class="card-body">
 					<!-- Sex image -->

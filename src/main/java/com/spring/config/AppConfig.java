@@ -36,7 +36,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
-	// define a bean for ViewResolver
+	// ViewResolver için ekleme yapýlýyor
 
 	@Bean
 	public ViewResolver viewResolver() {
@@ -52,10 +52,10 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public DataSource myDataSource() {
 		
-		// create connection pool
+		// Havuz baðlantýsý oluþturuluyor
 		ComboPooledDataSource myDataSource = new ComboPooledDataSource();
 
-		// set the jdbc driver
+		// jdbc driver set ediliyor
 		try {
 			myDataSource.setDriverClass("com.mysql.jdbc.Driver");		
 		}
@@ -63,16 +63,16 @@ public class AppConfig implements WebMvcConfigurer {
 			throw new RuntimeException(exc);
 		}
 		
-		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
+		// url ve kullanýcý günlük ekleniyor.(Verilerinokunduðundan emin olmak için)
 		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
 		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
 		
-		// set database connection props
+		// veritabaný baðlantý özelliklerini ayarlanýyor
 		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		myDataSource.setUser(env.getProperty("jdbc.user"));
 		myDataSource.setPassword(env.getProperty("jdbc.password"));
 		
-		// set connection pool props
+		// Baðlantý havuzu ayarlanýyor
 		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
 		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
 		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));		
@@ -83,7 +83,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	private Properties getHibernateProperties() {
 
-		// set hibernate properties
+		// Hazýrda bekletme özellikleri ayarlanýyor
 		Properties props = new Properties();
 
 		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
@@ -92,16 +92,16 @@ public class AppConfig implements WebMvcConfigurer {
 		return props;				
 	}
 
-	// define a bean for our security datasource
+	// Güvenlik veri kaynaðý tanýmlanýyor
 	
 	@Bean
 	public DataSource securityDataSource() {
 		
-		// create connection pool
+		// Havuz baðlantýsý oluþturuluyor
 		ComboPooledDataSource securityDataSource
 									= new ComboPooledDataSource();
 				
-		// set the jdbc driver class
+		// jdbc classý set ediliyor
 		
 		try {
 			securityDataSource.setDriverClass(env.getProperty("security.jdbc.driver"));
@@ -109,21 +109,21 @@ public class AppConfig implements WebMvcConfigurer {
 			throw new RuntimeException(exc);
 		}
 		
-		// log the connection props
-		// for sanity's sake, log this info
-		// just to make sure we are REALLY reading data from properties file
+		/* 
+		 Veri okuduðumuzdan emin olmak için baðlantý parçacýklarý günlük kaydedilir
+		  */
 		
 		logger.info(">>> security.jdbc.url=" + env.getProperty("security.jdbc.url"));
 		logger.info(">>> security.jdbc.user=" + env.getProperty("security.jdbc.user"));
 		
 		
-		// set database connection props
+		// veritabaný baðlantý özelliklerini ayarlanýyor
 		
 		securityDataSource.setJdbcUrl(env.getProperty("security.jdbc.url"));
 		securityDataSource.setUser(env.getProperty("security.jdbc.user"));
 		securityDataSource.setPassword(env.getProperty("security.jdbc.password"));
 		
-		// set connection pool props
+		// Baðlantý havuzu ayarlanýyor
 		
 		securityDataSource.setInitialPoolSize(
 				getIntProperty("security.connection.pool.initialPoolSize"));
@@ -140,14 +140,17 @@ public class AppConfig implements WebMvcConfigurer {
 		return securityDataSource;
 	}
 	
-	// need a helper method 
-	// read environment property and convert to int
+	/* 
+	 Yardýmcý meyhoda ihtiyaç var
+	 Çevre etkenler int e çevriliyor
+	 
+	  */
 	
 	private int getIntProperty(String propName) {
 		
 		String propVal = env.getProperty(propName);
 		
-		// now convert to int
+		// Ýnt e çevriliyor
 		int intPropVal = Integer.parseInt(propVal);
 		
 		return intPropVal;
@@ -156,10 +159,10 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(){
 		
-		// create session factorys
+		// Oturum faktörü oluþturuluyor
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		
-		// set the properties
+		//Özellikler ekleniyor
 		sessionFactory.setDataSource(myDataSource());
 		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
 		sessionFactory.setHibernateProperties(getHibernateProperties());
@@ -171,7 +174,7 @@ public class AppConfig implements WebMvcConfigurer {
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
 		
-		// setup transaction manager based on session factory
+		// Oturuma dayalý iþlem yöneticisi ayarlanýyor
 		HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
 
@@ -185,12 +188,3 @@ public class AppConfig implements WebMvcConfigurer {
           .addResourceLocations("/resources/"); 
     }	
 }
-
-
-
-
-
-
-
-
-

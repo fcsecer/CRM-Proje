@@ -12,7 +12,7 @@ import com.spring.entity.Customer;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	// need to inject customer dao
+	// Müþteri liste ekleniyor
 	@Autowired
 	private CustomerDAO customerDAO;
 	

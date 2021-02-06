@@ -25,15 +25,15 @@ $(function(){
 
 		function updateDisplay() {
 			var isChecked = $checkbox.is(':checked');
-			// Set the button's state
+			
 			$button.data('state', (isChecked) ? "on" : "off");
 
-			// Set the button's icon
+			
 			$button.find('.state-icon')
 				.removeClass()
 				.addClass('state-icon ' + settings[$button.data('state')].icon);
 
-			// Update the button's color
+			
 			if (isChecked) {
 				$button
 					.removeClass('btn-default')
@@ -48,7 +48,6 @@ $(function(){
 		}
 		function init() {
 			updateDisplay();
-			// Inject the icon if applicable
 			if ($button.find('.state-icon').length == 0) {
 				$button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
 			}

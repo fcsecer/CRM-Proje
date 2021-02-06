@@ -58,8 +58,8 @@ public class RegistrationController {
 		
 		// key=the role, value=display to user 
 		roles.put("ROLE_EMPLOYEE", "Employee");
-		roles.put("ROLE_MANAGER", "Manager");
-		roles.put("ROLE_ADMIN", "Admin");		
+		//roles.put("ROLE_MANAGER", "Manager");
+		//roles.put("ROLE_ADMIN", "Admin");		
 	}
 	
 	@GetMapping("/showRegistrationForm")

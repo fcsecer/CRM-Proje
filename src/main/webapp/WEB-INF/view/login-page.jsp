@@ -10,7 +10,7 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<!-- Reference Bootstrap files -->
+	
 	<link
 		href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
 		rel="stylesheet" id="bootstrap-css">
@@ -38,13 +38,13 @@
 						<div class="form-group">
 							<div class="col-xs-15">
 								<div>
-									<!-- Check for login error -->
+									<!-- Giris hatasini kontrol etme -->
 									<c:if test="${param.error != null}">
 										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
 											Invalid username and password.</div>
 									</c:if>
 
-									<!-- Check for logout -->
+									<!-- Cikis kontrol etme -->
 									<c:if test="${param.logout != null}">
 										<div class="alert alert-success col-xs-offset-1 col-xs-10">
 											You have been logged out.</div>

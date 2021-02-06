@@ -10,7 +10,7 @@
 	<title>List Customers</title>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	
-	<!-- reference our style sheet -->
+	<!-- csslerde var -->
 	<link
 		href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
 		rel="stylesheet" id="bootstrap-css">
@@ -69,14 +69,14 @@
 
 			</security:authorize>
 
-			<!--  add a search box -->
+			<!--  Arama  -->
 			<form:form action="search" method="POST">
                 Search customer: <input type="text"
 					name="theCustomerName" />
 				<input type="submit" value="Search" class="add-button" />
 			</form:form>
 
-			<!--  add our html table here -->
+			<!--  Table html -->
 
 			<form:form action="deleteSelected" method="POST">
 				<table>
@@ -90,7 +90,7 @@
 						<th>Email</th>
 						<th>Phone Number</th>
 
-						<%-- Only show "Action" column for managers or admin --%>
+						<%-- Yonetici ve adminlere gorunur --%>
 						<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
 
 							<th>Action</th>
@@ -99,15 +99,15 @@
 
 					</tr>
 
-					<!-- loop over and print our customers -->
+					<!-- Dongu musterileri yazdiriyor -->
 					<c:forEach var="tempCustomer" items="${customers}">
 
-						<!-- construct an "update" link with customer id -->
+						<!-- Musteri id kullanarak guncelleme -->
 						<c:url var="updateLink" value="/customer/showFormForUpdate">
 							<c:param name="customerId" value="${tempCustomer.id}" />
 						</c:url>
 
-						<!-- construct an "delete" link with customer id -->
+						<!-- Musteri id kullanarak silme -->
 						<c:url var="deleteLink" value="/customer/delete">
 							<c:param name="customerId" value="${tempCustomer.id}" />
 						</c:url>
@@ -128,13 +128,13 @@
 								<td><security:authorize
 										access="hasAnyRole('MANAGER', 'ADMIN')">
 
-										<!-- display the update link -->
+										<!-- Guncelleme linki goruntuleme -->
 										<a class='btn btn-info btn-xs' href="${updateLink}"><span
 											class="glyphicon glyphicon-edit"></span>Update</a>
 
 									</security:authorize> <security:authorize access="hasAnyRole('ADMIN')">
 
-										<!-- display the delete link -->
+										<!-- Silme baglantisini gosterme -->
 										<a class="btn btn-danger btn-xs" href="${deleteLink}"
 											onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false"><span
 											class="glyphicon glyphicon-remove"></span>Delete</a>
@@ -155,7 +155,7 @@
 				</security:authorize>
 			</form:form>
 
-			<!-- Add a logout button -->
+			<!-- Cikis butonu ekleme -->
 			<form:form action="${pageContext.request.contextPath}/logout"
 				method="POST">
 				<input type="submit" value="Logout" class="add-button" />

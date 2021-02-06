@@ -27,7 +27,7 @@ import com.spring.service.CustomerService;
 @RequestMapping("/customer")
 public class CustomerController {
 
-	// add an initbinder to convert trim input strings
+	// Baþlangýç baðlayýcýlarý ekleniyor
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		
@@ -36,17 +36,17 @@ public class CustomerController {
 		dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
 	}
 	
-	// need to inject our customer service
+	// müþteri listesi için yapýlandýrma yazýlýyor
 	@Autowired
 	private CustomerService customerService;
 	
 	@GetMapping("/list")
 	public String listCustomers(Model theModel) {
 		
-		// get customers from the service
+		// Müþteri verilerini getirme
 		List<Customer> theCustomers = customerService.getCustomers();
 				
-		// add the customers to the model
+		// Müþteri modeli ekleniyor
 		theModel.addAttribute("customers", theCustomers);
 		
 		return "list-customers";
@@ -55,7 +55,7 @@ public class CustomerController {
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
 		
-		// create model attribute to bind form data
+		// form verilerini baðlamak için model özelliði oluþturuluyor
 		Customer theCustomer = new Customer();
 		
 		theModel.addAttribute("customer", theCustomer);
@@ -71,7 +71,7 @@ public class CustomerController {
 			return "customer-form";
 		}
 		else {
-			// save the customer using our service
+			// Serivisi kullanarak Müþteriler kaydedilir
 			customerService.saveCustomer(theCustomer);	
 			
 			return "redirect:/customer/list";
@@ -83,20 +83,20 @@ public class CustomerController {
 	public String showFormForUpdate(@RequestParam("customerId") int theId,
 									Model theModel) {
 		
-		// get the customer from our service
+		// Servisten müþteri getiriliyor
 		Customer theCustomer = customerService.getCustomer(theId);	
 		
-		// set customer as a model attribute to pre-populate the form
+		// formu önceden doldurmak için müþteriyi model özelliði olarak ayarlanýr
 		theModel.addAttribute("customer", theCustomer);
 		
-		// send over to our form		
+		// form gönderiliyor		
 		return "customer-form";
 	}
 	
 	@GetMapping("/delete")
 	public String deleteCustomer(@RequestParam("customerId") int theId) {
 		
-		// delete the customer
+		// Müþteri silme
 		customerService.deleteCustomer(theId);
 		
 		return "redirect:/customer/list";
@@ -123,22 +123,12 @@ public class CustomerController {
     public String searchCustomers(@RequestParam("theCustomerName") String theCustomerName,
                                     Model theModel) {
 
-        // search customers from the service
+        // Müþteri arama
         List<Customer> theCustomers = customerService.searchCustomers(theCustomerName);
                 
-        // add the customers to the model
+        // müþterileri modele ekleniyor
         theModel.addAttribute("customers", theCustomers);
 
         return "list-customers";        
     }
 }
-
-
-
-
-
-
-
-
-
-

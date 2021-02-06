@@ -1,8 +1,8 @@
-// URLs images
+// Resimlerin URL'leri
 var female_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo8PcCxh7tT6MDFhJi2UaAT9SeciHqvZuaWtGg0y0-yyP8rMDz";
 var male_img = "https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg";
 
-// On page loaded
+// Sayfa yüklenmesi
 	$( document ).ready(function() {
     // Set the sex image
     set_sex_img();

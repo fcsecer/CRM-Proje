@@ -18,7 +18,7 @@ public class LoginController {
 		
 	}
 	
-	// add request mapping for /access-denied
+	// Eriþim reddedildi için istek eþlemesi ekleniyor
 	
 	@GetMapping("/access-denied")
 	public String showAccessDenied() {

@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 
-	// setup logger
+	// Loggerlar kuruluyor
 	private Logger theLogger = Logger.getLogger(getClass().getName());
 	
-	// setup pointcut declarations
+	// Spring için controller kuruluyor
 	@Pointcut("execution(* com.spring.controller.*.*(..))")
 	private void loggingForController() {}
 	
@@ -32,31 +32,31 @@ public class LoggingAspect {
 	@Before("loggingForAppFlow()")
 	public void before(JoinPoint theJoinPoint) {
 		
-		// display method that is calling
+		// Çağırılan method görüntüleniyor
 		String theMethod = theJoinPoint.getSignature().toShortString();
 		theLogger.info("======>> in @Before: calling method: " + theMethod);
 		
-		// get the arguments 
+		// Args alınıyor
 		Object[] args = theJoinPoint.getArgs();
 		
-		// loop through and display args
+		// döngü ve bağımsız değişkenleri görüntüleniyor
 		for(Object tempArg : args) {
 			theLogger.info("=====>> argument: " + tempArg);
 		}
 		
 	}
 	
-	// add @AfterReturning advice
+	// ekleniyor @AfterReturning 
 	@AfterReturning(
 			pointcut="loggingForAppFlow()",
 			returning="result")
 	public void afterReturning(JoinPoint theJoinPoint, Object result) {
 		
-		// display method that is returning from
+		// Görüntüleme yöntemi geri döndürülüyor
 		String theMethod = theJoinPoint.getSignature().toShortString();
 		theLogger.info("======>> in @Before: calling method: " + theMethod);
 		
-		// display data returned 
+		// Data dödürülmesi görüntüleniyor
 		theLogger.info("=====>> result: " + result);
 		
 	}

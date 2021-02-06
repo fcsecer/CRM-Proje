@@ -13,35 +13,35 @@ import com.spring.entity.Customer;
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
 
-	// need to inject the session factory
+	// session factory ekleniyor
 	@Autowired
 	private SessionFactory sessionFactory;
 			
 	@Override
 	public List<Customer> getCustomers() {
 		
-		// get the current hibernate session
+		// mevcut hazýrda bekletme oturumunu alýnýyor
 		Session currentSession = sessionFactory.getCurrentSession();
 				
-		// create a query  ... sort by last name
+		// bir sorgu oluþtur ... soyadýna göre sýrala
 		Query<Customer> theQuery = 
 				currentSession.createQuery("from Customer order by lastName",
 											Customer.class);
 		
-		// execute query and get result list
+		// Sorguyu çalýþtýr ve sonuç listesini al
 		List<Customer> customers = theQuery.getResultList();
 				
-		// return the results		
+		// Sonuç döndürülüyor		
 		return customers;
 	}
 
 	@Override
 	public void saveCustomer(Customer theCustomer) {
 
-		// get current hibernate session
+		// mevcut hazýrda bekletme oturumunu alýnýyor
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// save/upate the customer ... finally LOL
+		// Müþteriyi kaydetme ve güncelleme yapýlýyor
 		currentSession.saveOrUpdate(theCustomer);
 		
 	}
@@ -49,10 +49,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public Customer getCustomer(int theId) {
 
-		// get the current hibernate session
+		// mevcut hazýrda bekletme oturumunu alýnýyor
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// now retrieve/read from database using the primary key
+		// birincil anahtarý kullanarak veritabanýndan al / okuma yap
 		Customer theCustomer = currentSession.get(Customer.class, theId);
 		
 		return theCustomer;
@@ -61,10 +61,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void deleteCustomer(int theId) {
 
-		// get the current hibernate session
+		// mevcut hazýrda bekletme oturumunu alýnýyor
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// delete object with primary key
+		// nesneyi birincil anahtarla sil
 		Query theQuery = 
 				currentSession.createQuery("delete from Customer where id=:customerId");
 		theQuery.setParameter("customerId", theId);
@@ -74,20 +74,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	@Override
 	public List<Customer> searchCustomers(String theCustomerName) {
-        // get the current hibernate session
+        // mevcut hazýrda bekletme oturumunu al
         Session currentSession = sessionFactory.getCurrentSession();
         
         //Query theQuery = null;
         
-            // search for firstName or lastName ... case insensitive
+            // Ad veya Soyad büyük küçük harflere duyarlý deðil
         Query theQuery =currentSession.createQuery("from Customer where lower(firstName) like :theName or lower(lastName) like :theName or lower(email) like :theName" , Customer.class);
         theQuery.setParameter("theName", "%" + theCustomerName.toLowerCase() + "%");
 
         
-        // execute query and get result list
+        // Sorguyu çalýþtýr ve sonuç listesi alýnýyor
         List<Customer> customers = theQuery.getResultList();
                 
-        // return the results        
+        // Sonucu döndür      
         return customers;
         
 	}
