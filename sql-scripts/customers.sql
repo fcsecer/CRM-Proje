@@ -1,10 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `web_customer_tracker` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `web_customer_tracker`;
--- MySQL dump 10.13  Distrib 5.6.13, for osx10.6 (i386)
---
--- Host: 127.0.0.1    Database: web_customer_tracker
--- ------------------------------------------------------
--- Server version	5.6.16
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,7 +14,7 @@ USE `web_customer_tracker`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customer`
+-- "Müşteri" tablosu için tablo yapısı ayarlanıyor
 --
 
 DROP TABLE IF EXISTS `customer`;
@@ -35,18 +31,18 @@ CREATE TABLE `customer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customer`
+-- "Müşteri" tablosu için veri alma
 --
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 
 INSERT INTO `customer` VALUES 
-	(1,'Alex','Yhee','alex@gmail.com','267-837-5619'),
-	(2,'Cherry','Public','cherry@gmail.com','646-927-1824'),
-	(3,'Hector','Wang','hector@gmail.com','267-769-4524'),
-	(4,'August','Henry','august@gmail.com','800-462-5628'),
-	(5,'Glenn','Dickson','glenn@gmail.com','800-160-2700');
+	(1,'Can','Secer','can@gmail.com','111-222-4444'),
+	(2,'Murat','Göğebakan','mrtgbkn@gmail.com','111-222-3333'),
+	(3,'Sertar','Kulak','sertarklk@gmail.com','555-666-8888'),
+	(4,'Bilal','Bozkurt','bllbzkrt@gmail.com','333-777-1010'),
+	(5,'Gokce','Tabak','gokcetbk@gmail.com','666-222-9966');
 
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -60,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-24 21:50:59
+

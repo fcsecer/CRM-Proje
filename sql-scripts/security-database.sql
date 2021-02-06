@@ -4,7 +4,7 @@ CREATE DATABASE  IF NOT EXISTS `spring_security`;
 USE `spring_security`;
 
 --
--- Table structure for table `users`
+-- Tablo "kullanıcıları" için tablo yapısı oluşturuluyor
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -16,24 +16,21 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Kullanıcı tablosundan veri alma
 --
--- NOTE: The passwords are encrypted using BCrypt
---
--- A generation tool is avail at: http://www.luv2code.com/generate-bcrypt-password
---
--- Default passwords here are: fun123
+-- NOT: BCrypt kullanarak şifreleme yapıldı (öğrenmek amaçlı)
 --
 
 INSERT INTO `users` 
 VALUES 
-('caleb','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 1),
-('irene','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 1),
-('armin','{bcrypt}$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K', 1);
+('musteri','{bcrypt}$2a$10$hSKRVsD2jI4o5YSUkOIKj.xVxJiQPXzPc6ae2Yry95kOnOmJFKrnK', 1),
+('yonetici','{bcrypt}$2a$10$hSKRVsD2jI4o5YSUkOIKj.xVxJiQPXzPc6ae2Yry95kOnOmJFKrnK', 1),
+('admin','{bcrypt}$2a$10$hSKRVsD2jI4o5YSUkOIKj.xVxJiQPXzPc6ae2Yry95kOnOmJFKrnK', 1),
+('CanCan','{bcrypt}$2a$10$hSKRVsD2jI4o5YSUkOIKj.xVxJiQPXzPc6ae2Yry95kOnOmJFKrnK', 1);
 
 
 --
--- Table structure for table `userInfo`
+-- "Kullanıcı bilgi" tablosu için tablo yapısı oluşturuluyor
 --
 
 DROP TABLE IF EXISTS `authorities`;
@@ -45,13 +42,15 @@ CREATE TABLE `authorities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `userInfo`
+-- Kullanıcı bilgisinden veri alma
 --
 
 INSERT INTO `authorities` 
 VALUES 
-('caleb','ROLE_EMPLOYEE'),
-('irene','ROLE_EMPLOYEE'),
-('irene','ROLE_MANAGER'),
-('armin','ROLE_EMPLOYEE'),
-('armin','ROLE_ADMIN');
+('musteri','ROLE_EMPLOYEE'),
+('yonetici','ROLE_EMPLOYEE'),
+('yonetici','ROLE_MANAGER'),
+('admin','ROLE_EMPLOYEE'),
+('admin','ROLE_ADMIN'),
+('CanCan','ROLE_EMPLOYEE'),
+('CanCan','ROLE_ADMIN');
