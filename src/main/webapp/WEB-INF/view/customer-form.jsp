@@ -15,7 +15,7 @@
 		src="${pageContext.request.contextPath}/resources/js/sign-up-form.js"></script>
 	
 	
-	<!-- Reference Bootstrap files -->
+	
 	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
@@ -50,7 +50,7 @@
 						src="https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg">
 					<h2 id="who_message" class="card-title">Update Customer Information</h2>
 
-					<!-- First row (on medium screen) -->
+					
 					<div class="row">
 						<div class="form-group">
 							<label for="first_name" class="col-form-label">First Name</label>

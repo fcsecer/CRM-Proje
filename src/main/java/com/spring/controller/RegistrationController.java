@@ -52,11 +52,11 @@ public class RegistrationController {
 	@PostConstruct
 	protected void loadRoles() {
 		
-		// using hashmap, could also read this info from a database
+		// Hashmap kullanarak, bu bilgiyi bir veritabanýndan da okunabilir hale getiriyoruz
 		
 		roles = new LinkedHashMap<String, String>();
 		
-		// key=the role, value=display to user 
+		
 		roles.put("ROLE_EMPLOYEE", "Employee");
 		//roles.put("ROLE_MANAGER", "Manager");
 		//roles.put("ROLE_ADMIN", "Admin");		
@@ -67,7 +67,7 @@ public class RegistrationController {
 		
 		theModel.addAttribute("crmUser", new CrmUser());
 		
-		// add roles to the model for form display
+		// Rollerin formda görünmesi için
 		theModel.addAttribute("roles", roles);
 				
 		return "registration-form";
@@ -84,12 +84,12 @@ public class RegistrationController {
 		
 		logger.info("Processing registration form for: " + userName);
 		
-		// form validation
+		// form doðrulama yapýlýyor
 		if (theBindingResult.hasErrors()) {
 
 			theModel.addAttribute("crmUser", new CrmUser());
 			
-			// add roles to the model for form display
+			// form üzerinde rollerin seçilmesi için
 			theModel.addAttribute("roles", roles);
 						
 			theModel.addAttribute("registrationError", "User name/password can not be empty.");
@@ -99,7 +99,7 @@ public class RegistrationController {
 			return "registration-form";	
 		}
 		
-		// check the database if user already exists
+		// Kullanýcý veritabanýnda bulunuyor mu?Kontrol yapýlýyor
 		boolean userExists = doesUserExist(userName);
 		
 		if (userExists) {
@@ -111,19 +111,19 @@ public class RegistrationController {
 			return "registration-form";			
 		}
 		
-		// encrypt the password
+		// Þifre encrypt haline getiriliyor
         String encodedPassword = passwordEncoder.encode(theCrmUser.getPassword());
 
-        // prepend the encoding algorithm id
+        // encoding algoritmasý id ile eþleþiyor
         encodedPassword = "{bcrypt}" + encodedPassword;
                  
-		// give user default role of "employee"
+		// Eðer rol seçilmez ise Employee rolü veriliyor
         List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList("ROLE_EMPLOYEE");
 
-        // create user object (from Spring Security framework)
+        // kullanýcý nesnesi oluþtur ( Spring Security framework kullanarak)
         User tempUser = new User(userName, encodedPassword, authorities);
 
-        // save user in the database
+        // Kullanýcý veritabanýna kayýt ediliyor
         userDetailsManager.createUser(tempUser);		
 		
         logger.info("Successfully created user: " + userName);
@@ -135,7 +135,7 @@ public class RegistrationController {
 		
 		logger.info("Checking if user exists: " + userName);
 		
-		// check the database if the user already exists
+		// Kullanýcý veritabanýna önceden kayýtlýmý kontrol ediliyor
 		boolean exists = userDetailsManager.userExists(userName);
 		
 		logger.info("User: " + userName + ", exists: " + exists);

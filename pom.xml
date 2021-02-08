@@ -30,7 +30,7 @@
 			<version>1.8.13</version>
 		</dependency>
 		
-		<!-- Spring MVC support -->
+		<!-- Spring MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -38,7 +38,7 @@
 		</dependency>
 
 		<!-- Spring Security -->
-		<!-- spring-security-web and spring-security-config -->
+		<!-- spring-security-web ve spring-security-config -->
 		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
@@ -52,14 +52,14 @@
 		    <version>${springsecurity.version}</version>
 		</dependency>	
 		
-		<!-- Add Spring Security Taglibs support -->
+		<!-- Spring Security Taglibs  -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>${springsecurity.version}</version>
 		</dependency>	
 
-		<!-- Servlet, JSP and JSTL support -->
+		<!-- Servlet, JSP ve JSTL -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -85,7 +85,7 @@
 			<scope>test</scope>
 		</dependency>
 
-        <!-- Spring Transactions -->
+        <!-- Spring İşlemler-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
@@ -127,7 +127,7 @@
 		    <version>6.0.7.Final</version>
 		</dependency>
 
-		<!-- to compensate for java 9 not including jaxb -->
+		<!-- jaxb içermeyen java 9'u kullanmak için -->
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
@@ -142,7 +142,7 @@
 
 	</dependencies>
 
-	<!-- Add support for Maven WAR Plugin -->
+	<!--  Maven WAR eklentisi-->
 
 	<build>
 		<finalName>spring-crm</finalName>
@@ -150,7 +150,7 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<!-- Add Maven coordinates (GAV) for: maven-war-plugin -->
+					<!-- maven-war-plugin için GAV ekleniyor -->
 				    <groupId>org.apache.maven.plugins</groupId>
 				    <artifactId>maven-war-plugin</artifactId>
 				    <version>3.2.0</version>					

@@ -61,7 +61,7 @@
 
 			<security:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
 
-				<!-- put new button: Add Customer -->
+				<!-- Müsteri ekleme butonu -->
 
 				<input type="button" value="Add Customer"
 					onclick="window.location.href='showFormForAdd'; return false;"
